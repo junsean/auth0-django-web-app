@@ -14,8 +14,11 @@ def dashboard(request):
     auth0user = user.social_auth.get(provider="auth0")
     userdata = {
         'user_id': auth0user.uid,
+        'username': user.username,
         'name': user.first_name,
-        'picture': auth0user.extra_data['picture']
+        'picture': auth0user.extra_data['picture'],
+        'contact_id': auth0user.extra_data['contact_id'],
+        'tags': auth0user.extra_data['tags']
     }
 
     return render(request, 'dashboard.html', {
